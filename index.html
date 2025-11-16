@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant - Menu & Billing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ Restaurant Menu & Billing System</h1>
+            <nav>
+                <button class="nav-btn active" data-tab="menu">Menu</button>
+                <button class="nav-btn" data-tab="manage">Manage Menu</button>
+                <button class="nav-btn" data-tab="reports">Sales Report</button>
+            </nav>
+        </header>
+
+        <!-- Menu Tab with Cart on Right -->
+        <div id="menu-tab" class="tab-content active">
+            <div class="main-layout">
+                <div class="menu-section">
+                    <h2 class="section-title">Menu</h2>
+                    <div class="menu-grid" id="menu-grid">
+                        <!-- Menu items will be dynamically loaded here -->
+                    </div>
+                </div>
+                <div class="cart-billing-section">
+                    <div class="cart-items" id="cart-items">
+                        <h2>Your Cart</h2>
+                        <div id="cart-list"></div>
+                    </div>
+                    <div class="billing-section">
+                        <div class="bill-summary" id="bill-summary">
+                            <h2>Bill Summary</h2>
+                            <div class="bill-details">
+                                <div class="bill-row total">
+                                    <span>Total:</span>
+                                    <span id="total">₹0.00</span>
+                                </div>
+                            </div>
+                            <div class="bill-actions">
+                                <button class="btn btn-danger" id="clear-cart">Clear Cart</button>
+                                <button class="btn btn-primary" id="pay-now">Pay Now</button>
+                                <button class="btn btn-secondary" id="print-bill">Print Bill</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Menu Tab -->
+        <div id="manage-tab" class="tab-content">
+            <div class="manage-container">
+                <h2>Manage Menu</h2>
+                <div class="add-item-form">
+                    <h3>Add New Item</h3>
+                    <form id="add-item-form">
+                        <input type="text" id="item-name" placeholder="Item Name" required>
+                        <input type="number" id="item-price" placeholder="Price (₹)" step="0.01" required>
+                        <input type="url" id="item-image" placeholder="Image URL" required>
+                        <button type="submit" class="btn btn-primary">Add Item</button>
+                    </form>
+                </div>
+                <div class="menu-items-list">
+                    <h3>Current Menu Items</h3>
+                    <div id="manage-menu-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Report Tab -->
+        <div id="reports-tab" class="tab-content">
+            <div class="reports-container">
+                <h2>Monthly Sales Report</h2>
+                <div class="report-filters">
+                    <select id="month-select">
+                        <option value="">Select Month</option>
+                    </select>
+                    <button class="btn btn-primary" id="generate-report">Generate Report</button>
+                </div>
+                <div id="report-content"></div>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="payment-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Payment</h2>
+                <div id="qr-code-container"></div>
+                <p class="payment-amount">Amount: ₹<span id="payment-amount">0.00</span></p>
+                <p class="payment-note">Scan QR code to pay</p>
+                <button class="btn btn-success" id="confirm-payment">Confirm Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
